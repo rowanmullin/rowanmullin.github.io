@@ -3,7 +3,7 @@ const updateTime = () => {
   const curDate = new Date();
   const dateStringParts = curDate.toLocaleString().split(" ");
   dateStringParts.splice(-1, 0, curDate.getMilliseconds().toString().padStart(3, '0'));
-  dom.innerText = "Time: " + dateStringParts[0] + " " + dateStringParts[1] + "." + (dateStringParts[2]/1000)*30 + " " + dateStringParts[3]
+  dom.innerText = "Time: " + dateStringParts[0] + " " + dateStringParts[1] + "." + ((dateStringParts[2]/1000)*30).toFixed().padStart(2, "0") + " " + dateStringParts[3]
 };
 
 const updateLocation = async () => {
