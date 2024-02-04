@@ -11,7 +11,7 @@ const updateLocation = async () => {
   if (navigator.geolocation) {
       try {
           const result = await new Promise((a, r) => navigator.geolocation.getCurrentPosition(a, r));
-          dom.innerText = `Latitude: ${result.coords.latitude}\nLongitude: ${result.coords.longitude}`;
+          dom.innerText = `Latitude: ${result.coords.latitude.toFixed(6)}\nLongitude: ${result.coords.longitude.toFixed(6)}`;
       } catch (e) {
           dom.innerText = `Failed to get Location: "${e.message}"`;
       }
