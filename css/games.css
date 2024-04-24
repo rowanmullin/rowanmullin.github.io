@@ -1,13 +1,10 @@
 .content-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 20px 0px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 main a {
-  width: calc(100% / 4);
-  margin-bottom: 32px;
   background-color: #BBBBBB;
   padding:8px
 }
