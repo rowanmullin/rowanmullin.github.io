@@ -1,5 +1,5 @@
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #header {
@@ -33,4 +33,14 @@ nav ul li a {
   text-decoration: none;
   color: black;
   margin: 0 20px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+main {
+  padding-top: 120px;
 }
