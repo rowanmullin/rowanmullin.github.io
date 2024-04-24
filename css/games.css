@@ -1,6 +1,26 @@
 .content-box {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 20px 0px;
+}
+
+main a {
+  width: calc(100% / 4);
+  margin-bottom: 32px;
+  background-color: #BBBBBB;
+  padding:8px
+}
+
+.gamebox {
+  display: inline-block;
+}
+
+.gamebox > * {
+  margin: 0px;
+}
+
+a > .gamebox {
+  background-color: #BBBBBB;
+  padding:8px
 }

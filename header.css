@@ -19,8 +19,8 @@ nav {
 
 nav ul {
   width: 100%;
-  margin: none;
-  padding: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 nav ul li {
@@ -29,10 +29,14 @@ nav ul li {
   margin: 10px 30px;
 }
 
-nav ul li a {
+nav > ul > li > a {
   text-decoration: none;
   color: black;
   margin: 0 20px;
+}
+
+nav > ul > li > a:hover {
+  color: #4a6877;
 }
 
 .sticky {
