@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script defer src="./app.js"></script>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../header.css">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+
+  <body>
+    <header class="sticky">
+      <nav>
+        <img src="../../assets/troll.png">
+        <ul>
+          <li>
+            <a href="../../index.html">Home</a>
+          </li>
+          <li>
+            <a href="../../html/about.html">About</a>
+          </li>
+          <li>
+            <a href="../../PWA/index.html">PWA</a>
+          </li>
+          <li>
+            <a href="../../html/games.html">Games</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>CGOL</h1>
+      <p>CGOL or "Conway's Game Of Life" is a game with only 4 rules, used to simulate life. If you would like to know more, you can <a href="https://simple.wikipedia.org/wiki/Conway%27s_Game_of_Life">click here.</a> </br></br>Instructions:</br>1. Select grid size</p>
+      
+      <form id="SizePicker">
+        Grid Height:
+        <input type="number" id="inputHeight" name="height" min="1" value="1" max="100">
+        </br>
+        Grid Width:
+        <input type="number" id="inputWidth" name="width" min="1" value="1" max="100">
+      </br>
+        <input type="submit" value="Click me to generate grid!">
+      </form>
+
+      <table id="pixelCanvas"></table>
+    </main>
+  </body>
+</html>
