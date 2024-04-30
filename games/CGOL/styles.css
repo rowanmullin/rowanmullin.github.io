@@ -2,6 +2,14 @@ form {
   text-align: center;
 }
 
+div {
+  text-align: center;
+}
+
+input {
+  margin: 16px 0px;
+}
+
 table,
 tr,
 td {
