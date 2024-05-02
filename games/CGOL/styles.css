@@ -32,3 +32,11 @@ input[type=number] {
   width: 6em;
   margin: 8px;
 }
+
+#inputSpeed {
+  width: 3em;
+}
+
+.square[data-alive="true"] {
+  background-color: #000000;
+}

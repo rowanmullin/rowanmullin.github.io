@@ -1,18 +1,19 @@
 const rowsInput = document.getElementById('inputWidth');
 const columnsInput = document.getElementById('inputHeight');
 const submitButton = document.querySelector('input[type="submit"]');
+const speedInput = document.querySelector('#inputSpeed');
 const table = document.getElementById('pixelCanvas');
-
 const ab = document.querySelector('input.actionButton');
 
 let t = [];
 let inPlay;
 let columns;
 let rows;
+let speed = 0.5;
 
-function play() {
+function play(s) {
   updateGrid();
-  inPlay = setInterval(updateGrid, 500);
+  inPlay = setInterval(updateGrid, s*1000);
 }
 
 function pause() {
@@ -20,38 +21,38 @@ function pause() {
   inPlay = null;
 }
 
-function flipSquare(nodeId) {
-  t[nodeId] = !t[nodeId];
-  const square = document.querySelector(`td[data-id="${nodeId}"]`);
-  square.dataset.Alive == "0" ? square.style.backgroundColor = '#000000' :square.style.backgroundColor = '#FFFFFF'
-  square.dataset.Alive = !parseInt(square.dataset.Alive)
+function flipSquare(node) {
+  node.dataset.alive = !(node.dataset.alive === "true")
 }
 
-function getFilledNeighbours(i, squares2) {
+function getFilledNeighbours(i, squares) {
   let fn = 0;
 
+  let lCase = (i % columns > 0);
+  let rCase = (i % columns < columns - 1);
+
   // top left
-  if (squares2[i-rows-1] == 1) fn++;
+  if (squares[i - columns - 1] && lCase) fn++;
   // top
-  if (squares2[i - rows] == 1) fn++;
+  if (squares[i - columns]) fn++;
   // top right
-  if (squares2[i - rows+1] == 1) fn++;
+  if (squares[i - columns + 1] && rCase) fn++;
   // left
-  if (squares2[i - 1] == 1) fn++;
+  if (squares[i - 1] && lCase) fn++;
   // right
-  if (squares2[i + 1] == 1) fn++;
+  if (squares[i + 1] && rCase) fn++;
   // bot left
-  if (squares2[i + rows - 1] == 1) fn++;
+  if (squares[i + columns - 1] && lCase) fn++;
   // bot
-  if (squares2[i + rows] == 1) fn++;
+  if (squares[i + columns]) fn++;
   // bot right
-  if (squares2[i + rows + 1] == 1) fn++;
+  if (squares[i + columns + 1] && rCase) fn++;
 
   return fn;
 }
 
 function updateGrid() {
-  let t2 = [...t];
+  let t2 = t.map( e => e.dataset.alive === "true");
 
   for (let i=0;i<t.length;i++) {
     let fn = getFilledNeighbours(i, t2);
@@ -60,19 +61,20 @@ function updateGrid() {
     let case2 = fn == 2;
     let case3 = fn == 3;
 
-    if ((case1 && !(case2 || case3)) || (!case1 && case3)) flipSquare(i);
+    if ((case1 && !(case2 || case3)) || (!case1 && case3)) flipSquare(t[i]);
   }
 }
 
 
 ab.addEventListener('click', function(e) {
   e.preventDefault();
+  updateGrid();
   if (inPlay) {
-    e.target.value = "Start!";
+    e.target.value = "Play!";
     pause();
   } else {
     e.target.value = "Stop!";
-    play();
+    play(speed);
   }
 })
 
@@ -83,16 +85,15 @@ submitButton.addEventListener('click', function(e) {
   rows = parseInt(rowsInput.value)
   columns = parseInt(columnsInput.value)
 
-  for (let x = 0; x < columnsInput.value; x++) {
+  for (let x = 0; x < columns; x++) {
     let tr = document.createElement('TR')
-    for(let y = 0; y < rowsInput.value; y++) {
+    for(let y = 0; y < rows; y++) {
       let td = document.createElement('TD')
       td.className = 'square'
-      td.style.backgroundColor = '#FFFFFF';
       td.dataset.id = i++;
-      td.dataset.Alive = 0;
+      td.dataset.alive = false;
       tr.appendChild(td);
-      t.push(0)
+      t.push(td)
     }
 
     table.appendChild(tr);
@@ -100,5 +101,12 @@ submitButton.addEventListener('click', function(e) {
 })
 
 table.addEventListener('click', function(e) {
-  if (e.target.className === 'square') flipSquare(e.target.dataset.id);
+  if (e.target.className === 'square') flipSquare(e.target);
+})
+
+speedInput.addEventListener('input', function(e) {
+  if (inPlay) {
+    pause();
+    play(speed);
+  }
 })
