@@ -13,7 +13,7 @@ let speed = 0.5;
 
 function play(s) {
   updateGrid();
-  inPlay = setInterval(updateGrid, s*1000);
+  inPlay = setInterval(updateGrid, (s*1000));
 }
 
 function pause() {
@@ -104,9 +104,11 @@ table.addEventListener('click', function(e) {
   if (e.target.className === 'square') flipSquare(e.target);
 })
 
-speedInput.addEventListener('input', function(e) {
+speedInput.addEventListener('change', function(e) {
+  speed = 1 / parseFloat(e.target.value);
   if (inPlay) {
     pause();
     play(speed);
+    console.log(speed)
   }
 })
