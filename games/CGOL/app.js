@@ -11,6 +11,8 @@ let columns;
 let rows;
 let speed = 0.5;
 
+// Add Import / Export later
+
 function play(s) {
   updateGrid();
   inPlay = setInterval(updateGrid, (s*1000));
